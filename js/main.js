@@ -12,12 +12,10 @@ let chart = null;
 map.on('load', function() {
     d3.csv('assets/Paid_Parking_Transaction_Data.csv').then(rawData => {
         
-        // Limit to 30 for performance
         const data = rawData.slice(0, 30);
         
         const features = data.map(row => {
-            // Helper function to shorten those long Seattle block names
-            // This takes "6TH AVE N BETWEEN ST AND ST" and just keeps "6TH AVE N"
+           
             let shortName = row['Blockface Name'] ? row['Blockface Name'].split(' BETWEEN')[0] : "Unknown";
 
             return {
@@ -45,7 +43,6 @@ map.on('load', function() {
             'type': 'circle',
             'source': 'parking-data',
             'paint': {
-                // FIXED SIZE LOGIC: More aggressive scaling for small dollar amounts
                 'circle-radius': [
                     'interpolate', ['linear'], ['get', 'amount'],
                     0, 4,
@@ -66,11 +63,10 @@ map.on('load', function() {
             }
         });
 
-        // Initialize Chart with better spacing and shortened names
         chart = c3.generate({
             bindto: '#chart',
             size: {
-                height: 250 // Slightly taller to fit names
+                height: 250 
             },
             padding: {
                 bottom: 40,
@@ -86,7 +82,7 @@ map.on('load', function() {
                 x: { 
                     type: 'category',
                     tick: {
-                        rotate: 30, // Less steep rotation for readability
+                        rotate: 30, 
                         multiline: false
                     }
                 },
@@ -97,7 +93,6 @@ map.on('load', function() {
             legend: { show: false }
         });
 
-        // Click for Popup
         map.on('click', 'parking-layer', (e) => {
             const props = e.features[0].properties;
             new mapboxgl.Popup()
@@ -125,7 +120,6 @@ function updateDashboard() {
     const totalElement = document.getElementById('total-count');
     if (totalElement) totalElement.innerText = features.length;
 
-    // Grab top 5 longest stays to keep the chart clean
     let sorted = features
         .map(f => ({
             block: f.properties.block,

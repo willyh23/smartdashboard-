@@ -1,8 +1,6 @@
-/* General Layout */
 body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #2c3e50; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
-/* Left Sidebar Panel */
 #info-panel {
     position: absolute;
     top: 0; left: 0; width: 380px; height: 100%;
@@ -12,7 +10,6 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; 
     box-shadow: 4px 0 10px rgba(0,0,0,0.3);
 }
 
-/* Panel Elements */
 #title { font-size: 24px; font-weight: bold; margin-bottom: 40px; }
 #reset { float: right; font-size: 14px; cursor: pointer; color: #f39c12; text-decoration: underline; }
 
@@ -22,12 +19,10 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; 
 .divider { height: 1px; background: #7f8c8d; margin: 30px 0; }
 #chart-title { font-weight: bold; margin-bottom: 15px; font-size: 16px; }
 
-/* Chart Styling */
 #chart { height: 220px; width: 100%; }
 .c3-axis-y text, .c3-axis-x text { fill: white; }
 #description { font-size: 13px; color: #bdc3c7; line-height: 1.6; margin-top: 20px; }
 
-/* Legend Container */
 #legend {
     position: absolute; bottom: 30px; right: 20px;
     background: #fff; padding: 15px; color: #333;
@@ -38,14 +33,13 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; 
 .legend-title { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
 .legend-item { display: flex; align-items: center; margin-bottom: 8px; }
 
-/* Legend Color Dots (Payment Methods) */
 .dot { width: 15px; height: 15px; margin-right: 10px; border: 1px solid #999; display: inline-block; border-radius: 50%; }
-.method-phone { background: #f39c12; }  /* Match the JS Orange */
-.method-credit { background: #3498db; } /* Match the JS Blue */
+.method-phone { background: #f39c12; }  
+.method-credit { background: #3498db; } 
 
-/* Legend Proportional Sizes (Amount Paid) */
+
 .dot-size { 
-    background: #95a5a6; /* Neutral grey for size indicator */
+    background: #95a5a6; 
     display: inline-block; 
     border-radius: 50%; 
     border: 1px solid #7f8c8d;
