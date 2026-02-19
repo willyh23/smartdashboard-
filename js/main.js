@@ -3,7 +3,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbHloMjMiLCJhIjoiY21obDBjN2ttMW1kdDJxcHI3a
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-75.1652, 39.9526], // Philadelphia Center City
+    center: [-75.1652, 39.9526], // Philadelphia
     zoom: 11
 });
 
@@ -20,9 +20,9 @@ map.on('load', function() {
         'type': 'circle',
         'source': 'covid-data',
         'paint': {
-            // Updated to use 'count' from your dataset
             'circle-radius': [
-                'interpolate', ['linear'], ['get', 'count'],
+                'interpolate', ['linear'], 
+                ['to-number', ['get', 'count']], // Handles strings in GeoJSON
                 0, 4,
                 50, 15,
                 100, 30
@@ -34,7 +34,7 @@ map.on('load', function() {
         }
     });
 
-    // Initialize the Chart with 'count'
+    // Initialize Chart
     chart = c3.generate({
         bindto: '#chart',
         data: {
@@ -57,17 +57,17 @@ function updateDashboard() {
     let dataPoints = [];
 
     features.forEach(f => {
-        // Accessing the 'count' property directly
-        let val = f.properties.count || 0; 
+        // Ensure we are doing math on a number, not a string
+        let val = parseFloat(f.properties.count) || 0; 
         totalCount += val;
         dataPoints.push(val);
     });
 
-    // Update the Big Number
     document.getElementById('total-count').innerText = totalCount.toLocaleString();
 
-    // Update the Chart with sorted top values
     dataPoints.sort((a, b) => b - a);
+    
+    // Refresh chart with top 10 visible ZIP codes
     chart.load({
         columns: [['count', ...dataPoints.slice(0, 10)]]
     });
