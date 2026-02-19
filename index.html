@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Washington Smoke Dashboard</title>
+    <title>Seattle Parking Dashboard</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
@@ -16,32 +16,44 @@
     
     <div id="info-panel">
         <div id="title">
-            Washington Smoke Dashboard
+            Seattle Parking Analysis
             <span id="reset">reset</span>
         </div>
         
         <div id="stat-container">
-            <div id="count-label"># Census Tracts in the displaying region</div>
+            <div id="count-label"># Transactions in the displaying region</div>
             <div id="total-count" class="orange-stat">0</div>
-            <div id="total-label">total count</div>
+            <div id="total-label">total transactions</div>
         </div>
 
         <div class="divider"></div>
 
-        <div id="chart-title">Top 10 by Cumulative Smoke Score</div>
+        <div id="chart-title">Longest Parking Duration (Min)</div>
         <div id="chart"></div>
         
         <div id="description">
-            This dashboard visualizes wildfire exposure across Washington census tracts. 
-            The map is colored by Cumulative Smoke Score.
+            This dashboard visualizes the first 30 parking transactions from Feb 2026. 
+            <br><br>
+            <strong>Circle Size:</strong> Represents the <em>Amount Paid</em>.
+            <br>
+            <strong>Circle Color:</strong> Represents the <em>Payment Method</em> used.
         </div>
     </div>
 
     <div id="legend">
-        <div class="legend-title">Cumulative Smoke Score</div>
-        <div class="legend-item"><span class="dot score-high"></span> 500+ (High)</div>
-        <div class="legend-item"><span class="dot score-med"></span> 100 - 500</div>
-        <div class="legend-item"><span class="dot score-low"></span> 0 - 100 (Low)</div>
+        <div class="legend-title">Payment Method</div>
+        <div class="legend-item"><span class="dot method-credit"></span> Credit Card</div>
+        <div class="legend-item"><span class="dot method-phone"></span> Phone</div>
+        
+        <div class="legend-title" style="margin-top: 15px;">Amount Paid ($)</div>
+        <div class="legend-item">
+            <span class="dot-size small"></span> 
+            <span style="margin-left: 10px;">Low Amount</span>
+        </div>
+        <div class="legend-item">
+            <span class="dot-size large"></span> 
+            <span style="margin-left: 10px;">High Amount</span>
+        </div>
     </div>
 
     <script src="js/main.js"></script>

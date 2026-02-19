@@ -1,6 +1,8 @@
+/* General Layout */
 body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #2c3e50; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
+/* Left Sidebar Panel */
 #info-panel {
     position: absolute;
     top: 0; left: 0; width: 380px; height: 100%;
@@ -10,8 +12,9 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; 
     box-shadow: 4px 0 10px rgba(0,0,0,0.3);
 }
 
+/* Panel Elements */
 #title { font-size: 24px; font-weight: bold; margin-bottom: 40px; }
-#reset { float: right; font-size: 14px; cursor: pointer; color: #f39c12; }
+#reset { float: right; font-size: 14px; cursor: pointer; color: #f39c12; text-decoration: underline; }
 
 .orange-stat { font-size: 54px; color: #f39c12; font-weight: bold; text-align: center; margin: 10px 0; }
 #count-label, #total-label { text-align: center; color: #bdc3c7; font-size: 14px; }
@@ -19,19 +22,34 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; 
 .divider { height: 1px; background: #7f8c8d; margin: 30px 0; }
 #chart-title { font-weight: bold; margin-bottom: 15px; font-size: 16px; }
 
+/* Chart Styling */
 #chart { height: 220px; width: 100%; }
 .c3-axis-y text, .c3-axis-x text { fill: white; }
+#description { font-size: 13px; color: #bdc3c7; line-height: 1.6; margin-top: 20px; }
 
+/* Legend Container */
 #legend {
     position: absolute; bottom: 30px; right: 20px;
     background: #fff; padding: 15px; color: #333;
     border-radius: 4px; font-size: 13px; z-index: 100;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-.legend-title { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-.legend-item { display: flex; align-items: center; margin-bottom: 5px; }
 
-.dot { width: 18px; height: 18px; margin-right: 10px; border: 1px solid #999; display: inline-block; border-radius: 50%; }
-.score-high { background: #800026; }
-.score-med { background: #fd8d3c; }
-.score-low { background: #fed976; }
+.legend-title { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+.legend-item { display: flex; align-items: center; margin-bottom: 8px; }
+
+/* Legend Color Dots (Payment Methods) */
+.dot { width: 15px; height: 15px; margin-right: 10px; border: 1px solid #999; display: inline-block; border-radius: 50%; }
+.method-phone { background: #f39c12; }  /* Match the JS Orange */
+.method-credit { background: #3498db; } /* Match the JS Blue */
+
+/* Legend Proportional Sizes (Amount Paid) */
+.dot-size { 
+    background: #95a5a6; /* Neutral grey for size indicator */
+    display: inline-block; 
+    border-radius: 50%; 
+    border: 1px solid #7f8c8d;
+    margin-right: 0px; 
+}
+.small { width: 8px; height: 8px; }
+.large { width: 20px; height: 20px; }

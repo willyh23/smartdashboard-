@@ -3,95 +3,101 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbHloMjMiLCJhIjoiY21obDBjN2ttMW1kdDJxcHI3a
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-120.7401, 47.7511],
-    zoom: 6.5
+    center: [-122.3321, 47.6062], 
+    zoom: 12
 });
 
 let chart = null;
 
 map.on('load', function() {
-    map.addSource('smoke-data', {
-        type: 'geojson',
-        data: 'assets/wildfireexposure.geojson'
-    });
+    d3.csv('assets/Paid_Parking_Transaction_Data.csv').then(rawData => {
+        
+        // LIMIT TO FIRST 30 DATA POINTS
+        const data = rawData.slice(0, 30);
+        
+        const features = data.map(row => {
+            return {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [parseFloat(row.Longitude), parseFloat(row.Latitude)]
+                },
+                'properties': {
+                    'amount': parseFloat(row.amount_paid) || 0,
+                    'duration': parseInt(row.durationinminutes) || 0,
+                    'method': row.payment_mean, // 'phone', 'credit card', etc.
+                    'block': row.blockface_name
+                }
+            };
+        });
 
-    map.addLayer({
-        'id': 'smoke-layer',
-        'type': 'circle',
-        'source': 'smoke-data',
-        'paint': {
-            'circle-radius': 6,
-            // COLOR GRADIENT based on Cumulative Smoke Score
-            'circle-color': [
-                'interpolate', ['linear'], ['to-number', ['get', 'Cumulative Smoke Score']],
-                0, '#fed976',   // Low Score
-                100, '#fd8d3c',
-                500, '#bd0026',
-                1000, '#800026'  // High Score
-            ],
-            'circle-opacity': 0.85,
-            'circle-stroke-width': 0.5,
-            'circle-stroke-color': '#fff'
-        }
-    });
+        map.addSource('parking-data', {
+            type: 'geojson',
+            data: { 'type': 'FeatureCollection', 'features': features }
+        });
 
-    // Initialize Chart with categorical colors like your example
-    chart = c3.generate({
-        bindto: '#chart',
-        data: {
-            x: 'x',
-            columns: [
-                ['x', 'Rank 1', 'Rank 2', 'Rank 3'],
-                ['score', 0, 0, 0]
-            ],
-            type: 'bar',
-            colors: { 'score': '#1abc9c' } // Teal color from your example
-        },
-        axis: {
-            x: { type: 'category' },
-            y: { label: { text: 'Score', position: 'outer-middle' } }
-        }
-    });
+        map.addLayer({
+            'id': 'parking-layer',
+            'type': 'circle',
+            'source': 'parking-data',
+            'paint': {
+                // SIZE: Proportional to Amount Paid
+                'circle-radius': [
+                    'interpolate', ['linear'], ['get', 'Amount Paid'],
+                    0, 5,
+                    5, 15,
+                    20, 40
+                ],
+                // COLOR: Categorical based on Payment Mean
+                'circle-color': [
+                    'match', ['get', 'Payment Mean'],
+                    'phone', '#f39c12',       // Orange for Phone
+                    'credit card', '#3498db', // Blue for Credit Card
+                    /* default */ '#95a5a6'   // Grey for others
+                ],
+                'circle-opacity': 0.8,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#fff'
+            }
+        });
 
-    // POPUP logic: Shows Rank and Score
-    map.on('click', 'smoke-layer', (e) => {
-        const props = e.features[0].properties;
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`
-                <strong>Rank:</strong> ${props.Rank}<br>
-                <strong>Score:</strong> ${props['Cumulative Smoke Score']}
-            `)
-            .addTo(map);
-    });
+        // Initialize Chart
+        chart = c3.generate({
+            bindto: '#chart',
+            data: {
+                x: 'x',
+                columns: [['x'], ['duration']],
+                type: 'bar',
+                colors: { 'duration': '#1abc9c' }
+            },
+            axis: {
+                x: { type: 'category' },
+                y: { label: 'Duration (Min)' }
+            }
+        });
 
-    map.on('idle', updateDashboard);
+        map.on('idle', updateDashboard);
+    });
 });
 
 function updateDashboard() {
-    const features = map.queryRenderedFeatures({ layers: ['smoke-layer'] });
-    
+    const features = map.queryRenderedFeatures({ layers: ['parking-layer'] });
     document.getElementById('total-count').innerText = features.length;
 
-    // Get top 10 features by Score for the chart
     let sorted = features
         .map(f => ({
-            rank: f.properties.Rank,
-            score: parseFloat(f.properties['Cumulative Smoke Score']) || 0
+            block: f.properties.block,
+            duration: f.properties.duration
         }))
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 5); // Limit to top 5 for cleaner bars
+        .sort((a, b) => b.duration - a.duration)
+        .slice(0, 5);
 
     if (sorted.length > 0) {
         chart.load({
             columns: [
-                ['x', ...sorted.map(d => "Rank " + d.rank)],
-                ['score', ...sorted.map(d => d.score)]
+                ['x', ...sorted.map(d => d.block)],
+                ['duration', ...sorted.map(d => d.duration)]
             ]
         });
     }
 }
-
-document.getElementById('reset').addEventListener('click', () => {
-    map.flyTo({ center: [-120.7401, 47.7511], zoom: 6.5 });
-});
