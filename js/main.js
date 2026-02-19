@@ -4,7 +4,7 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
     center: [-122.3321, 47.6062], 
-    zoom: 11
+    zoom: 12
 });
 
 let chart = null;
@@ -133,5 +133,5 @@ function updateDashboard() {
 
 // Reset view button logic
 document.getElementById('reset').addEventListener('click', () => {
-    map.flyTo({ center: [-122.3321, 47.6062], zoom: 11 });
+    map.flyTo({ center: [-122.3321, 47.6062], zoom: 12 });
 });
