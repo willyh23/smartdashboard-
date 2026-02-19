@@ -3,7 +3,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbHloMjMiLCJhIjoiY21obDBjN2ttMW1kdDJxcHI3a
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-120.7401, 47.7511], // Washington State Center
+    center: [-120.7401, 47.7511], 
     zoom: 6
 });
 
@@ -19,17 +19,20 @@ map.on('load', function() {
         'id': 'smoke-layer',
         'type': 'circle',
         'source': 'smoke-data',
-        // Filter to only show the top 30 ranks to prevent clutter
-        'filter': ['<=', ['to-number', ['get', 'Rank']], 30],
         'paint': {
-            'circle-radius': [
+            // Constant small radius to handle 1700+ points without overlap
+            'circle-radius': 4.5,
+            // Color gradient based on Rank (1 is highest/worst)
+            'circle-color': [
                 'interpolate', ['linear'], ['to-number', ['get', 'Rank']],
-                1, 25,   // Rank 1 (highest impact) = Large circle
-                30, 5    // Rank 30 = Small circle
+                1, '#800026',
+                50, '#bd0026',
+                150, '#fd8d3c',
+                300, '#fed976',
+                500, '#ffffcc'
             ],
-            'circle-color': '#f7941d', 
-            'circle-opacity': 0.7,
-            'circle-stroke-width': 1,
+            'circle-opacity': 0.8,
+            'circle-stroke-width': 0.5,
             'circle-stroke-color': '#ffffff'
         }
     });
@@ -56,7 +59,6 @@ function updateDashboard() {
     let scores = [];
 
     features.forEach(f => {
-        // Using Cumulative Smoke Score for the chart/total
         let val = parseFloat(f.properties['Cumulative Smoke Score']) || 0; 
         totalScore += val;
         scores.push(val);
@@ -64,6 +66,7 @@ function updateDashboard() {
 
     document.getElementById('total-count').innerText = Math.round(totalScore).toLocaleString();
 
+    // Sort descending for the bar chart
     scores.sort((a, b) => b - a);
     chart.load({
         columns: [['score', ...scores.slice(0, 10)]]

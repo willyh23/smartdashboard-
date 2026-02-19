@@ -23,15 +23,17 @@
         <div id="total-count">0</div>
         <div id="chart"></div>
         <div id="description">
-            This dashboard visualizes smoke exposure ranks across Washington. The chart shows the Cumulative Smoke Scores for the top 10 most impacted areas in your current view.
+            This dashboard visualizes smoke exposure ranks across Washington census tracts. Darker red points indicate a higher exposure rank (worse impact).
         </div>
     </div>
 
     <div id="legend">
-        <div class="legend-title">Smoke Rank</div>
-        <div class="legend-item"><span class="dot large"></span> 1 - 10 (Highest)</div>
-        <div class="legend-item"><span class="dot medium"></span> 11 - 20</div>
-        <div class="legend-item"><span class="dot small"></span> 21 - 30 (Lower)</div>
+        <div class="legend-title">Exposure Rank</div>
+        <div class="legend-item"><span class="dot rank-1"></span> 1 - 50 (Highest)</div>
+        <div class="legend-item"><span class="dot rank-2"></span> 51 - 150</div>
+        <div class="legend-item"><span class="dot rank-3"></span> 151 - 300</div>
+        <div class="legend-item"><span class="dot rank-4"></span> 301 - 500</div>
+        <div class="legend-item"><span class="dot rank-5"></span> 500+ (Lowest)</div>
     </div>
 
     <script src="js/main.js"></script>

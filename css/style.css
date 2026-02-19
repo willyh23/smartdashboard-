@@ -43,13 +43,18 @@ body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: 
 }
 .legend-title { font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #555; padding-bottom: 5px; }
 .legend-item { display: flex; align-items: center; margin-bottom: 8px; }
+
 .dot { 
-    background: #f7941d; 
-    border-radius: 50%; 
+    width: 15px;
+    height: 15px;
     margin-right: 10px; 
     border: 1px solid white;
     display: inline-block;
 }
-.small { width: 10px; height: 10px; }
-.medium { width: 18px; height: 18px; }
-.large { width: 26px; height: 26px; }
+
+/* Legend Gradient Colors */
+.rank-1 { background: #800026; } /* High Risk */
+.rank-2 { background: #bd0026; }
+.rank-3 { background: #fd8d3c; }
+.rank-4 { background: #fed976; }
+.rank-5 { background: #ffffcc; } /* Low Risk */
