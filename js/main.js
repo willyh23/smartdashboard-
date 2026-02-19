@@ -3,44 +3,43 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbHloMjMiLCJhIjoiY21obDBjN2ttMW1kdDJxcHI3a
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-75.1652, 39.9526], // Philadelphia
-    zoom: 11
+    center: [-120.7401, 47.7511], // Washington State Center
+    zoom: 6
 });
 
 let chart = null;
 
 map.on('load', function() {
-    map.addSource('covid-data', {
+    map.addSource('smoke-data', {
         type: 'geojson',
-        data: 'assets/covid_deaths_by_zip.geojson'
+        data: 'assets/wildfireexposure.geojson'
     });
 
     map.addLayer({
-        'id': 'deaths-layer',
+        'id': 'smoke-layer',
         'type': 'circle',
-        'source': 'covid-data',
+        'source': 'smoke-data',
+        // Filter to only show the top 30 ranks to prevent clutter
+        'filter': ['<=', ['to-number', ['get', 'Rank']], 30],
         'paint': {
             'circle-radius': [
-                'interpolate', ['linear'], 
-                ['to-number', ['get', 'count']], // Handles strings in GeoJSON
-                0, 4,
-                50, 15,
-                100, 30
+                'interpolate', ['linear'], ['to-number', ['get', 'Rank']],
+                1, 25,   // Rank 1 (highest impact) = Large circle
+                30, 5    // Rank 30 = Small circle
             ],
-            'circle-color': '#5eb2a0', 
+            'circle-color': '#f7941d', 
             'circle-opacity': 0.7,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#ffffff'
         }
     });
 
-    // Initialize Chart
     chart = c3.generate({
         bindto: '#chart',
         data: {
-            columns: [['count', 0]],
+            columns: [['score', 0]],
             type: 'bar',
-            colors: { 'count': '#5eb2a0' }
+            colors: { 'score': '#f7941d' }
         },
         axis: {
             x: { show: false },
@@ -52,27 +51,25 @@ map.on('load', function() {
 });
 
 function updateDashboard() {
-    const features = map.queryRenderedFeatures({ layers: ['deaths-layer'] });
-    let totalCount = 0;
-    let dataPoints = [];
+    const features = map.queryRenderedFeatures({ layers: ['smoke-layer'] });
+    let totalScore = 0;
+    let scores = [];
 
     features.forEach(f => {
-        // Ensure we are doing math on a number, not a string
-        let val = parseFloat(f.properties.count) || 0; 
-        totalCount += val;
-        dataPoints.push(val);
+        // Using Cumulative Smoke Score for the chart/total
+        let val = parseFloat(f.properties['Cumulative Smoke Score']) || 0; 
+        totalScore += val;
+        scores.push(val);
     });
 
-    document.getElementById('total-count').innerText = totalCount.toLocaleString();
+    document.getElementById('total-count').innerText = Math.round(totalScore).toLocaleString();
 
-    dataPoints.sort((a, b) => b - a);
-    
-    // Refresh chart with top 10 visible ZIP codes
+    scores.sort((a, b) => b - a);
     chart.load({
-        columns: [['count', ...dataPoints.slice(0, 10)]]
+        columns: [['score', ...scores.slice(0, 10)]]
     });
 }
 
 document.getElementById('reset').addEventListener('click', () => {
-    map.flyTo({ center: [-75.1652, 39.9526], zoom: 11 });
+    map.flyTo({ center: [-120.7401, 47.7511], zoom: 6 });
 });

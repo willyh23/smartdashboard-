@@ -7,7 +7,7 @@ body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: 
     left: 0;
     width: 350px;
     height: 100%;
-    background: rgba(43, 51, 62, 0.9);
+    background: rgba(30, 30, 30, 0.9);
     color: white;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
@@ -15,13 +15,13 @@ body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: 
     overflow-y: auto;
 }
 
-#title { font-size: 22px; font-weight: bold; margin-bottom: 30px; }
-#reset { float: right; font-size: 14px; cursor: pointer; color: #aaa; text-decoration: underline; }
+#title { font-size: 20px; font-weight: bold; margin-bottom: 30px; }
+#reset { float: right; font-size: 14px; cursor: pointer; color: #f7941d; text-decoration: underline; }
 
-#count-label { text-align: center; color: #ccc; margin-top: 20px; }
+#count-label { text-align: center; color: #ccc; margin-top: 20px; font-size: 14px; }
 #total-count { 
     text-align: center; 
-    font-size: 48px; 
+    font-size: 42px; 
     color: #f7941d; 
     font-weight: bold; 
     margin-bottom: 20px;
@@ -30,27 +30,25 @@ body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: 
 #chart { height: 200px; width: 100%; margin-top: 20px; }
 #description { font-size: 13px; color: #bbb; line-height: 1.5; margin-top: 30px; }
 
-/* Legend Styles */
 #legend {
     position: absolute;
     bottom: 40px;
     right: 20px;
-    background: rgba(43, 51, 62, 0.9);
+    background: rgba(30, 30, 30, 0.9);
     padding: 15px;
     color: white;
     border-radius: 5px;
     font-size: 12px;
     z-index: 100;
-    min-width: 100px;
 }
 .legend-title { font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #555; padding-bottom: 5px; }
 .legend-item { display: flex; align-items: center; margin-bottom: 8px; }
 .dot { 
-    background: #5eb2a0; 
+    background: #f7941d; 
     border-radius: 50%; 
     margin-right: 10px; 
     border: 1px solid white;
-    display: inline-block; /* Crucial for visibility */
+    display: inline-block;
 }
 .small { width: 10px; height: 10px; }
 .medium { width: 18px; height: 18px; }

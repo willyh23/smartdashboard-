@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>COVID-19 Dashboard</title>
+    <title>Washington Wildfire Smoke Dashboard</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
@@ -16,22 +16,22 @@
     
     <div id="info-panel">
         <div id="title">
-            COVID-19 Deaths by ZIP Code
+            WA Wildfire Smoke Exposure
             <span id="reset">reset</span>
         </div>
-        <div id="count-label"># Deaths in the displaying region</div>
+        <div id="count-label">Cumulative Smoke Score (Visible Area)</div>
         <div id="total-count">0</div>
         <div id="chart"></div>
         <div id="description">
-            This dashboard visualizes COVID-19 related fatalities. Use the map to pan and zoom; the chart and total count will update dynamically based on the visible area.
+            This dashboard visualizes smoke exposure ranks across Washington. The chart shows the Cumulative Smoke Scores for the top 10 most impacted areas in your current view.
         </div>
     </div>
 
     <div id="legend">
-    <div class="legend-title">Total Deaths</div>
-    <div class="legend-item"><span class="dot small"></span> 0 - 10</div>
-    <div class="legend-item"><span class="dot medium"></span> 11 - 50</div>
-    <div class="legend-item"><span class="dot large"></span> 50+</div>
+        <div class="legend-title">Smoke Rank</div>
+        <div class="legend-item"><span class="dot large"></span> 1 - 10 (Highest)</div>
+        <div class="legend-item"><span class="dot medium"></span> 11 - 20</div>
+        <div class="legend-item"><span class="dot small"></span> 21 - 30 (Lower)</div>
     </div>
 
     <script src="js/main.js"></script>
