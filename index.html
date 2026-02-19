@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Washington Wildfire Smoke Dashboard</title>
+    <title>Washington Smoke Dashboard</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
@@ -16,24 +16,32 @@
     
     <div id="info-panel">
         <div id="title">
-            WA Wildfire Smoke Exposure
+            Washington Smoke Dashboard
             <span id="reset">reset</span>
         </div>
-        <div id="count-label">Cumulative Smoke Score (Visible Area)</div>
-        <div id="total-count">0</div>
+        
+        <div id="stat-container">
+            <div id="count-label"># Census Tracts in the displaying region</div>
+            <div id="total-count" class="orange-stat">0</div>
+            <div id="total-label">total count</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="chart-title">Top 10 by Cumulative Smoke Score</div>
         <div id="chart"></div>
+        
         <div id="description">
-            This dashboard visualizes smoke exposure ranks across Washington census tracts. Darker red points indicate a higher exposure rank (worse impact).
+            This dashboard visualizes wildfire exposure across Washington census tracts. 
+            The map is colored by Cumulative Smoke Score.
         </div>
     </div>
 
     <div id="legend">
-        <div class="legend-title">Exposure Rank</div>
-        <div class="legend-item"><span class="dot rank-1"></span> 1 - 50 (Highest)</div>
-        <div class="legend-item"><span class="dot rank-2"></span> 51 - 150</div>
-        <div class="legend-item"><span class="dot rank-3"></span> 151 - 300</div>
-        <div class="legend-item"><span class="dot rank-4"></span> 301 - 500</div>
-        <div class="legend-item"><span class="dot rank-5"></span> 500+ (Lowest)</div>
+        <div class="legend-title">Cumulative Smoke Score</div>
+        <div class="legend-item"><span class="dot score-high"></span> 500+ (High)</div>
+        <div class="legend-item"><span class="dot score-med"></span> 100 - 500</div>
+        <div class="legend-item"><span class="dot score-low"></span> 0 - 100 (Low)</div>
     </div>
 
     <script src="js/main.js"></script>

@@ -1,60 +1,37 @@
-body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: #222; }
+body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #2c3e50; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
 #info-panel {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 350px;
-    height: 100%;
-    background: rgba(30, 30, 30, 0.9);
-    color: white;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-    z-index: 10;
-    overflow-y: auto;
+    top: 0; left: 0; width: 380px; height: 100%;
+    background: rgba(44, 62, 80, 0.95);
+    color: white; padding: 25px;
+    z-index: 10; overflow-y: auto;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.3);
 }
 
-#title { font-size: 20px; font-weight: bold; margin-bottom: 30px; }
-#reset { float: right; font-size: 14px; cursor: pointer; color: #f7941d; text-decoration: underline; }
+#title { font-size: 24px; font-weight: bold; margin-bottom: 40px; }
+#reset { float: right; font-size: 14px; cursor: pointer; color: #f39c12; }
 
-#count-label { text-align: center; color: #ccc; margin-top: 20px; font-size: 14px; }
-#total-count { 
-    text-align: center; 
-    font-size: 42px; 
-    color: #f7941d; 
-    font-weight: bold; 
-    margin-bottom: 20px;
-}
+.orange-stat { font-size: 54px; color: #f39c12; font-weight: bold; text-align: center; margin: 10px 0; }
+#count-label, #total-label { text-align: center; color: #bdc3c7; font-size: 14px; }
 
-#chart { height: 200px; width: 100%; margin-top: 20px; }
-#description { font-size: 13px; color: #bbb; line-height: 1.5; margin-top: 30px; }
+.divider { height: 1px; background: #7f8c8d; margin: 30px 0; }
+#chart-title { font-weight: bold; margin-bottom: 15px; font-size: 16px; }
+
+#chart { height: 220px; width: 100%; }
+.c3-axis-y text, .c3-axis-x text { fill: white; }
 
 #legend {
-    position: absolute;
-    bottom: 40px;
-    right: 20px;
-    background: rgba(30, 30, 30, 0.9);
-    padding: 15px;
-    color: white;
-    border-radius: 5px;
-    font-size: 12px;
-    z-index: 100;
+    position: absolute; bottom: 30px; right: 20px;
+    background: #fff; padding: 15px; color: #333;
+    border-radius: 4px; font-size: 13px; z-index: 100;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-.legend-title { font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #555; padding-bottom: 5px; }
-.legend-item { display: flex; align-items: center; margin-bottom: 8px; }
+.legend-title { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+.legend-item { display: flex; align-items: center; margin-bottom: 5px; }
 
-.dot { 
-    width: 15px;
-    height: 15px;
-    margin-right: 10px; 
-    border: 1px solid white;
-    display: inline-block;
-}
-
-/* Legend Gradient Colors */
-.rank-1 { background: #800026; } /* High Risk */
-.rank-2 { background: #bd0026; }
-.rank-3 { background: #fd8d3c; }
-.rank-4 { background: #fed976; }
-.rank-5 { background: #ffffcc; } /* Low Risk */
+.dot { width: 18px; height: 18px; margin-right: 10px; border: 1px solid #999; display: inline-block; border-radius: 50%; }
+.score-high { background: #800026; }
+.score-med { background: #fd8d3c; }
+.score-low { background: #fed976; }

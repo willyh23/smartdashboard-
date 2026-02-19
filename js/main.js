@@ -3,8 +3,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbHloMjMiLCJhIjoiY21obDBjN2ttMW1kdDJxcHI3a
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-120.7401, 47.7511], 
-    zoom: 6
+    center: [-120.7401, 47.7511],
+    zoom: 6.5
 });
 
 let chart = null;
@@ -20,34 +20,49 @@ map.on('load', function() {
         'type': 'circle',
         'source': 'smoke-data',
         'paint': {
-            // Constant small radius to handle 1700+ points without overlap
-            'circle-radius': 4.5,
-            // Color gradient based on Rank (1 is highest/worst)
+            'circle-radius': 6,
+            // COLOR GRADIENT based on Cumulative Smoke Score
             'circle-color': [
-                'interpolate', ['linear'], ['to-number', ['get', 'Rank']],
-                1, '#800026',
-                50, '#bd0026',
-                150, '#fd8d3c',
-                300, '#fed976',
-                500, '#ffffcc'
+                'interpolate', ['linear'], ['to-number', ['get', 'Cumulative Smoke Score']],
+                0, '#fed976',   // Low Score
+                100, '#fd8d3c',
+                500, '#bd0026',
+                1000, '#800026'  // High Score
             ],
-            'circle-opacity': 0.8,
+            'circle-opacity': 0.85,
             'circle-stroke-width': 0.5,
-            'circle-stroke-color': '#ffffff'
+            'circle-stroke-color': '#fff'
         }
     });
 
+    // Initialize Chart with categorical colors like your example
     chart = c3.generate({
         bindto: '#chart',
         data: {
-            columns: [['score', 0]],
+            x: 'x',
+            columns: [
+                ['x', 'Rank 1', 'Rank 2', 'Rank 3'],
+                ['score', 0, 0, 0]
+            ],
             type: 'bar',
-            colors: { 'score': '#f7941d' }
+            colors: { 'score': '#1abc9c' } // Teal color from your example
         },
         axis: {
-            x: { show: false },
-            y: { tick: { color: 'white' } }
+            x: { type: 'category' },
+            y: { label: { text: 'Score', position: 'outer-middle' } }
         }
+    });
+
+    // POPUP logic: Shows Rank and Score
+    map.on('click', 'smoke-layer', (e) => {
+        const props = e.features[0].properties;
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(`
+                <strong>Rank:</strong> ${props.Rank}<br>
+                <strong>Score:</strong> ${props['Cumulative Smoke Score']}
+            `)
+            .addTo(map);
     });
 
     map.on('idle', updateDashboard);
@@ -55,24 +70,28 @@ map.on('load', function() {
 
 function updateDashboard() {
     const features = map.queryRenderedFeatures({ layers: ['smoke-layer'] });
-    let totalScore = 0;
-    let scores = [];
+    
+    document.getElementById('total-count').innerText = features.length;
 
-    features.forEach(f => {
-        let val = parseFloat(f.properties['Cumulative Smoke Score']) || 0; 
-        totalScore += val;
-        scores.push(val);
-    });
+    // Get top 10 features by Score for the chart
+    let sorted = features
+        .map(f => ({
+            rank: f.properties.Rank,
+            score: parseFloat(f.properties['Cumulative Smoke Score']) || 0
+        }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5); // Limit to top 5 for cleaner bars
 
-    document.getElementById('total-count').innerText = Math.round(totalScore).toLocaleString();
-
-    // Sort descending for the bar chart
-    scores.sort((a, b) => b - a);
-    chart.load({
-        columns: [['score', ...scores.slice(0, 10)]]
-    });
+    if (sorted.length > 0) {
+        chart.load({
+            columns: [
+                ['x', ...sorted.map(d => "Rank " + d.rank)],
+                ['score', ...sorted.map(d => d.score)]
+            ]
+        });
+    }
 }
 
 document.getElementById('reset').addEventListener('click', () => {
-    map.flyTo({ center: [-120.7401, 47.7511], zoom: 6 });
+    map.flyTo({ center: [-120.7401, 47.7511], zoom: 6.5 });
 });
