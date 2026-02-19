@@ -1,5 +1,7 @@
 ## Why I Chose This Map Type
 
+**URL Link:**: https://willyh23.github.io/smartdashboard-/ 
+
 For this dashboard, I went with a **proportional symbol map** mixed with **categorical coloring**. I thought this was the best way to handle the Seattle parking data because it lets you see two different things at once without the map getting too crowded.
 
 ### 1. Scaling the Circles (Proportional Symbols)
