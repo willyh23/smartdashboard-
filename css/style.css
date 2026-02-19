@@ -29,3 +29,21 @@ body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; background: 
 
 #chart { height: 200px; width: 100%; margin-top: 20px; }
 #description { font-size: 13px; color: #bbb; line-height: 1.5; margin-top: 30px; }
+
+#legend {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    background: rgba(43, 51, 62, 0.9);
+    padding: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 100;
+}
+.legend-title { font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #555; padding-bottom: 5px; }
+.legend-item { display: flex; align-items: center; margin-bottom: 5px; }
+.dot { background: #5eb2a0; border-radius: 50%; margin-right: 10px; border: 1px solid white; }
+.small { width: 8px; height: 8px; }
+.medium { width: 16px; height: 16px; }
+.large { width: 24px; height: 24px; }

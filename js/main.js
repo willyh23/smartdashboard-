@@ -3,7 +3,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsbHloMjMiLCJhIjoiY21obDBjN2ttMW1kdDJxcHI3a
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-75.1652, 39.9526], // Centered on Seattle, change as needed
+    center: [-75.1652, 39.9526], // Philadelphia Center City
     zoom: 11
 });
 
@@ -20,26 +20,27 @@ map.on('load', function() {
         'type': 'circle',
         'source': 'covid-data',
         'paint': {
+            // Updated to use 'count' from your dataset
             'circle-radius': [
                 'interpolate', ['linear'], ['get', 'count'],
                 0, 4,
                 50, 15,
                 100, 30
             ],
-            'circle-color': '#5eb2a0', // Matching the teal-ish color in the demo
+            'circle-color': '#5eb2a0', 
             'circle-opacity': 0.7,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#ffffff'
         }
     });
 
-    // Initialize the Chart
+    // Initialize the Chart with 'count'
     chart = c3.generate({
         bindto: '#chart',
         data: {
-            columns: [['deaths', 0]],
+            columns: [['count', 0]],
             type: 'bar',
-            colors: { 'deaths': '#5eb2a0' }
+            colors: { 'count': '#5eb2a0' }
         },
         axis: {
             x: { show: false },
@@ -47,31 +48,31 @@ map.on('load', function() {
         }
     });
 
-    // Update Dashboard when map moves
     map.on('idle', updateDashboard);
 });
 
 function updateDashboard() {
     const features = map.queryRenderedFeatures({ layers: ['deaths-layer'] });
-    let totalDeaths = 0;
-    let deathCounts = [];
+    let totalCount = 0;
+    let dataPoints = [];
 
     features.forEach(f => {
-        totalDeaths += f.properties.deaths;
-        deathCounts.push(f.properties.deaths);
+        // Accessing the 'count' property directly
+        let val = f.properties.count || 0; 
+        totalCount += val;
+        dataPoints.push(val);
     });
 
     // Update the Big Number
-    document.getElementById('total-count').innerText = totalDeaths.toLocaleString();
+    document.getElementById('total-count').innerText = totalCount.toLocaleString();
 
-    // Update the Chart (sorting top 10 zip codes in view)
-    deathCounts.sort((a, b) => b - a);
+    // Update the Chart with sorted top values
+    dataPoints.sort((a, b) => b - a);
     chart.load({
-        columns: [['count', ...deathCounts.slice(0, 10)]]
+        columns: [['count', ...dataPoints.slice(0, 10)]]
     });
 }
 
-// Reset Function
 document.getElementById('reset').addEventListener('click', () => {
     map.flyTo({ center: [-75.1652, 39.9526], zoom: 11 });
 });
