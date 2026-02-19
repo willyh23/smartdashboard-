@@ -59,7 +59,7 @@ map.on('load', function() {
                     'match', ['get', 'method'],
                     'phone', '#f39c12',
                     'credit card', '#3498db',
-                    'cash', '#95a5a6'
+                    /* default */ '#95a5a6'
                 ],
                 'circle-opacity': 0.8,
                 'circle-stroke-width': 1,
