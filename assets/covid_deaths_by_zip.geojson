@@ -1,0 +1,500 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19107",
+                "covid_outcome": "DIED",
+                "count": 29,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26606
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19132",
+                "covid_outcome": "DIED",
+                "count": 141,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26607
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19111",
+                "covid_outcome": "DIED",
+                "count": 220,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26608
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19115",
+                "covid_outcome": "DIED",
+                "count": 297,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26609
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19136",
+                "covid_outcome": "DIED",
+                "count": 185,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26610
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19114",
+                "covid_outcome": "DIED",
+                "count": 145,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26611
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19142",
+                "covid_outcome": "DIED",
+                "count": 89,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26612
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19147",
+                "covid_outcome": "DIED",
+                "count": 69,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26613
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19123",
+                "covid_outcome": "DIED",
+                "count": 79,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26614
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19118",
+                "covid_outcome": "DIED",
+                "count": 42,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26615
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19129",
+                "covid_outcome": "DIED",
+                "count": 23,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26616
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19119",
+                "covid_outcome": "DIED",
+                "count": 189,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26617
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19134",
+                "covid_outcome": "DIED",
+                "count": 143,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26618
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19152",
+                "covid_outcome": "DIED",
+                "count": 313,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26619
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19133",
+                "covid_outcome": "DIED",
+                "count": 81,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26620
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19104",
+                "covid_outcome": "DIED",
+                "count": 184,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26621
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19127",
+                "covid_outcome": "DIED",
+                "count": 8,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26622
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19146",
+                "covid_outcome": "DIED",
+                "count": 79,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26623
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19151",
+                "covid_outcome": "DIED",
+                "count": 83,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26624
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19128",
+                "covid_outcome": "DIED",
+                "count": 71,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26625
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19148",
+                "covid_outcome": "DIED",
+                "count": 215,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26626
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19149",
+                "covid_outcome": "DIED",
+                "count": 112,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26627
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19143",
+                "covid_outcome": "DIED",
+                "count": 197,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26628
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19150",
+                "covid_outcome": "DIED",
+                "count": 92,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26629
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19135",
+                "covid_outcome": "DIED",
+                "count": 76,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26630
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19131",
+                "covid_outcome": "DIED",
+                "count": 243,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26631
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19154",
+                "covid_outcome": "DIED",
+                "count": 107,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26632
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19106",
+                "covid_outcome": "DIED",
+                "count": 9,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26633
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19138",
+                "covid_outcome": "DIED",
+                "count": 122,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26634
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19139",
+                "covid_outcome": "DIED",
+                "count": 173,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26635
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19130",
+                "covid_outcome": "DIED",
+                "count": 53,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26636
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19103",
+                "covid_outcome": "DIED",
+                "count": 59,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26637
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19125",
+                "covid_outcome": "DIED",
+                "count": 48,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26638
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19141",
+                "covid_outcome": "DIED",
+                "count": 117,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26639
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19124",
+                "covid_outcome": "DIED",
+                "count": 181,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26640
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19137",
+                "covid_outcome": "DIED",
+                "count": 26,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26641
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19144",
+                "covid_outcome": "DIED",
+                "count": 221,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26642
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19122",
+                "covid_outcome": "DIED",
+                "count": 60,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26643
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19153",
+                "covid_outcome": "DIED",
+                "count": 35,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26644
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19116",
+                "covid_outcome": "DIED",
+                "count": 202,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26645
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19140",
+                "covid_outcome": "DIED",
+                "count": 188,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26646
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19121",
+                "covid_outcome": "DIED",
+                "count": 94,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26647
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19126",
+                "covid_outcome": "DIED",
+                "count": 171,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26648
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19120",
+                "covid_outcome": "DIED",
+                "count": 193,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26649
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "zip_code": "19145",
+                "covid_outcome": "DIED",
+                "count": 140,
+                "etl_timestamp": "2024-12-09T16:00:01Z",
+                "objectid": 26650
+            }
+        }
+    ]
+}

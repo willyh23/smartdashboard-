@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>COVID-19 Dashboard</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="map"></div>
+    
+    <div id="info-panel">
+        <div id="title">
+            COVID-19 Deaths by ZIP Code
+            <span id="reset">reset</span>
+        </div>
+        <div id="count-label"># Deaths in the displaying region</div>
+        <div id="total-count">0</div>
+        <div id="chart"></div>
+        <div id="description">
+            This dashboard visualizes COVID-19 related fatalities. Use the map to pan and zoom; the chart and total count will update dynamically based on the visible area.
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
