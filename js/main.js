@@ -12,10 +12,14 @@ let chart = null;
 map.on('load', function() {
     d3.csv('assets/Paid_Parking_Transaction_Data.csv').then(rawData => {
         
-        // LIMIT TO FIRST 30 DATA POINTS
+        // Limit to 30 for performance
         const data = rawData.slice(0, 30);
         
         const features = data.map(row => {
+            // Helper function to shorten those long Seattle block names
+            // This takes "6TH AVE N BETWEEN ST AND ST" and just keeps "6TH AVE N"
+            let shortName = row['Blockface Name'] ? row['Blockface Name'].split(' BETWEEN')[0] : "Unknown";
+
             return {
                 'type': 'Feature',
                 'geometry': {
@@ -23,11 +27,10 @@ map.on('load', function() {
                     'coordinates': [parseFloat(row.Longitude), parseFloat(row.Latitude)]
                 },
                 'properties': {
-                    // Use Number() to ensure Mapbox recognizes these for scaling
                     'amount': Number(row['Amount Paid']) || 0,
                     'duration': Number(row['Duration In Minutes']) || 0,
                     'method': (row['Payment Mean'] || "").toLowerCase(), 
-                    'block': row['Blockface Name']
+                    'block': shortName 
                 }
             };
         });
@@ -42,14 +45,14 @@ map.on('load', function() {
             'type': 'circle',
             'source': 'parking-data',
             'paint': {
-                // SIZE: Proportional to Amount Paid
-                // Increased the max radius to 50 to make differences obvious
+                // FIXED SIZE LOGIC: More aggressive scaling for small dollar amounts
                 'circle-radius': [
                     'interpolate', ['linear'], ['get', 'amount'],
                     0, 4,
-                    2, 10,
-                    5, 20,
-                    15, 50 
+                    2, 8,
+                    5, 18,
+                    10, 35,
+                    20, 60
                 ],
                 'circle-color': [
                     'match', ['get', 'method'],
@@ -63,11 +66,15 @@ map.on('load', function() {
             }
         });
 
-        // Initialize Chart with fixes for cramped labels
+        // Initialize Chart with better spacing and shortened names
         chart = c3.generate({
             bindto: '#chart',
+            size: {
+                height: 250 // Slightly taller to fit names
+            },
             padding: {
-                bottom: 60 // Extra space for rotated labels
+                bottom: 40,
+                left: 40
             },
             data: {
                 x: 'x',
@@ -79,24 +86,27 @@ map.on('load', function() {
                 x: { 
                     type: 'category',
                     tick: {
-                        rotate: 45, // Rotate labels so they don't overlap
+                        rotate: 30, // Less steep rotation for readability
                         multiline: false
                     }
                 },
-                y: { label: 'Min' }
-            }
+                y: { 
+                    label: { text: 'Min', position: 'outer-middle' }
+                }
+            },
+            legend: { show: false }
         });
 
-        // Popup logic
+        // Click for Popup
         map.on('click', 'parking-layer', (e) => {
             const props = e.features[0].properties;
             new mapboxgl.Popup()
                 .setLngLat(e.lngLat)
                 .setHTML(`
-                    <div style="color:#333">
-                        <strong>${props.block}</strong><br>
-                        Paid: $${props.amount}<br>
-                        Time: ${props.duration} mins
+                    <div style="color:#333; font-family:sans-serif;">
+                        <strong style="color:#2c3e50;">${props.block}</strong><br>
+                        <b>Paid:</b> $${props.amount}<br>
+                        <b>Time:</b> ${props.duration} mins
                     </div>
                 `)
                 .addTo(map);
@@ -115,14 +125,14 @@ function updateDashboard() {
     const totalElement = document.getElementById('total-count');
     if (totalElement) totalElement.innerText = features.length;
 
-    // Sort by duration for the chart
+    // Grab top 5 longest stays to keep the chart clean
     let sorted = features
         .map(f => ({
             block: f.properties.block,
             duration: f.properties.duration
         }))
         .sort((a, b) => b.duration - a.duration)
-        .slice(0, 5); // Show top 5 so bars aren't too skinny
+        .slice(0, 5);
 
     if (sorted.length > 0 && chart) {
         chart.load({
