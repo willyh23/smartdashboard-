@@ -4,7 +4,7 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
     center: [-122.3321, 47.6062], 
-    zoom: 12
+    zoom: 11
 });
 
 let chart = null;
@@ -59,7 +59,7 @@ map.on('load', function() {
                     'match', ['get', 'method'],
                     'phone', '#f39c12',
                     'credit card', '#3498db',
-                    /* default */ '#95a5a6'
+                    'cash', '#95a5a6'
                 ],
                 'circle-opacity': 0.8,
                 'circle-stroke-width': 1,
@@ -133,5 +133,5 @@ function updateDashboard() {
 
 // Reset view button logic
 document.getElementById('reset').addEventListener('click', () => {
-    map.flyTo({ center: [-122.3321, 47.6062], zoom: 12 });
+    map.flyTo({ center: [-122.3321, 47.6062], zoom: 11 });
 });
