@@ -43,14 +43,14 @@ map.on('load', function() {
             'paint': {
                 // SIZE: Proportional to Amount Paid
                 'circle-radius': [
-                    'interpolate', ['linear'], ['get', 'Amount Paid'],
+                    'interpolate', ['linear'], ['get', 'amount_paid'],
                     0, 5,
                     5, 15,
                     20, 40
                 ],
                 // COLOR: Categorical based on Payment Mean
                 'circle-color': [
-                    'match', ['get', 'Payment Mean'],
+                    'match', ['get', 'payment_mean'],
                     'phone', '#f39c12',       // Orange for Phone
                     'credit card', '#3498db', // Blue for Credit Card
                     /* default */ '#95a5a6'   // Grey for others
